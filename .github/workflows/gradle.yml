@@ -10,7 +10,7 @@ name: Java CI with Gradle
 on:
   push:
     branches:
-        - "Feature-Development"
+        - "Feature_Development"
         - "master"
   pull_request:
     branches: [ "master" ]
