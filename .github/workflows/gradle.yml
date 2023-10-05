@@ -24,7 +24,31 @@ permissions:
   packages: write
 
 jobs:
+  build-and-package:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Make Gradle wrapper executable
+        run: |
+          chmod +x ./gradlew
+      - name: Build JAR
+        run: |
+          ./gradlew build
+
+      - name: Archive JAR artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-java-app
+          path: build/libs/*.jar
   testing:
+    needs: build-and-package
 
     runs-on: ubuntu-latest
 
@@ -67,6 +91,10 @@ jobs:
       - name: Make Gradle wrapper executable
         run: |
           chmod +x ./gradlew
+      - name: Download JAR artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: my-java-app
       - name: Build with Gradle 8.3
         uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
         with:
