@@ -11,9 +11,9 @@ on:
   push:
     branches:
         - "Feature-Development"
-        - "main"
+        - "master"
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 env:
   REGISTRY: ghcr.io
