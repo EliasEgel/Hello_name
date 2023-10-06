@@ -47,7 +47,7 @@ class GreetingControllerTest {
                 .get("/CustomGreeting/Test")
                 .then()
                 .statusCode(200)
-                .body(equalTo("Hello Test!"));
+                .body(equalTo("Hello TestI!"));
 
     }
 }
