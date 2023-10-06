@@ -19,4 +19,10 @@ public class GreetingController {
     public String customGreeting(@PathVariable("input") String input){
         return greetingsService.customGreeting(input);
     }
+
+
+    @GetMapping("/conflicthandler")
+    public String conflictHandler(){
+        return("This makes a conflict");
+    }
 }
